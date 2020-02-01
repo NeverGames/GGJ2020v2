@@ -60,6 +60,7 @@ public class PickUp : MonoBehaviour
         {
             timer = 0;
             obtainObject.GrabObjectPlayer1(other.GetComponent<MovementInput>());
+            
 
             
         }

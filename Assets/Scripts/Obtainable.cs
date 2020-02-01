@@ -18,6 +18,7 @@ public class Obtainable : MonoBehaviour
         if (!player.isHolding && hasTool)
         {
             player.isHolding = true;
+            player.toolSelected = toolID;
             hasTool = false;
             benchTool.SetActive(false);
             playerTool1.SetActive(true);
@@ -26,6 +27,7 @@ public class Obtainable : MonoBehaviour
         else if (player.isHolding && !hasTool)
         {
             player.isHolding = false;
+            player.toolSelected = 0;
             hasTool = true;
             benchTool.SetActive(true);
             playerTool1.SetActive(false);
@@ -42,6 +44,7 @@ public class Obtainable : MonoBehaviour
         if (!player.isHolding && hasTool)
         {
             player.isHolding = true;
+            player.toolSelected = toolID;
             hasTool = false;
             benchTool.SetActive(false);
             playerTool2.SetActive(true);
@@ -50,6 +53,7 @@ public class Obtainable : MonoBehaviour
         else if (player.isHolding && !hasTool)
         {
             player.isHolding = false;
+            player.toolSelected = 0;
             hasTool = true;
             benchTool.SetActive(true);
             playerTool2.SetActive(false);

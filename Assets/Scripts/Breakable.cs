@@ -29,7 +29,9 @@ public class Breakable : MonoBehaviour
     public virtual void Break(bool breakBool)
     {
         isBroken = breakBool;
-
+        var toolReq = GetComponent<ToolSelect>();
+        int tempint = Random.Range(1, 4); 
+        toolReq.PickTool(tempint);
         if (isBroken)
         {
             dmgParticle.SetActive(true);
@@ -40,10 +42,14 @@ public class Breakable : MonoBehaviour
 
 
 
-    public virtual void Repair()
+    public virtual void Repair(MovementInput player)
     {
-        dmgParticle.SetActive(false);
-        isBroken = false;
+        if (GetComponent<ToolSelect>().selectID == player.toolSelected)
+        {
+            dmgParticle.SetActive(false);
+            isBroken = false;
+        }
+        
     }
 
     public virtual void SpeedControl()

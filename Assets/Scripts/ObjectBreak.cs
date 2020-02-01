@@ -15,7 +15,7 @@ public class ObjectBreak : MonoBehaviour
     private float timeVal;
 
     [SerializeField]
-    private SpriteRenderer toolSprite;
+    private Image toolSprite;
 
     private void Awake()
     {

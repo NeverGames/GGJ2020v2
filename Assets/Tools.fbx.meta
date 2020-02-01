@@ -3,7 +3,22 @@ guid: 7b4fdcde29672484b99cca9397078fcf
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Tool_Hammer
+    second: {fileID: 2800000, guid: cb5acf0c9c60bb44aa8ea108643ff4d4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Tool_Screwdriver
+    second: {fileID: 2800000, guid: bf24034212a7ca643981de014ddbf411, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Tool_Spanner
+    second: {fileID: 2800000, guid: 08687976cf4e07a478e44cc03004b0be, type: 3}
   materials:
     importMaterials: 1
     materialName: 0

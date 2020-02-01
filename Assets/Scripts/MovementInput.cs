@@ -23,8 +23,8 @@ public class MovementInput : MonoBehaviour
    
     public Camera cam;
     public CharacterController controller;
-   
 
+    public int toolSelected;
     public Transform player;
   
 

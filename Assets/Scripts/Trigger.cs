@@ -92,7 +92,7 @@ using UnityEngine.UI;
                 var player = other.GetComponent<MovementInput>();
                 player.anim.SetTrigger("Fixing");
                 timer = 0;
-                interaction.Repair();
+                interaction.Repair(player);
                 //interactText.text = "";
             }
             else if (other.tag == "Player2" && Input.GetButtonDown("A2") && timer >= interactDelay)
@@ -100,7 +100,7 @@ using UnityEngine.UI;
                 var player = other.GetComponent<MovementInput>();
                 player.anim.SetTrigger("Fixing");
                 timer = 0;
-                interaction.Repair();
+                interaction.Repair(player);
                 //interactText.text = "";
             }
         }
