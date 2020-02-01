@@ -5,25 +5,41 @@ using UnityEngine;
 public class EngineController : Breakable
 {
 
-    bool engineOn = true;
+    bool engineOn = false;
     bool isFast = false;
+
+    public int currentState = 1;
+    
     public Animator engineAnim;
+
+    private MissionControls missionControls;
+
+    
+
+    private void Awake()
+    {
+        missionControls = FindObjectOfType<MissionControls>();
+        currentState = 1;
+    }
+
 
     public override void SpeedControl()
     {
         //base.SpeedControl();
         if (!isFast)
         {
+            currentState = 2;
             engineAnim.SetBool("IsFast", true);
             isFast = true;
         }
         else if (isFast)
         {
+            currentState = 1;
             engineAnim.SetBool("IsFast", false);
             isFast = false;
         }
 
-        
+        missionControls.ComapareMissionRequirements();
 
     }
 
@@ -41,10 +57,14 @@ public class EngineController : Breakable
         else if (!engineOn)
         {
             Debug.Log("Engine on");
+            currentState = 0;
             engineAnim.SetBool("PowerDown", false);
             engineOn = true;
+        }
+        missionControls.ComapareMissionRequirements();
 
-        } 
     }
+
+
 
 }
