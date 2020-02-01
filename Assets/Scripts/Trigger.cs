@@ -87,7 +87,7 @@ using UnityEngine.UI;
         {
         if (this.transform.tag == "Breakable")
         {
-            if (other.tag == "Player1" && Input.GetButtonDown("A1") && timer >= interactDelay)
+            if (other.tag == "Player1" && Input.GetButtonDown("A1") && timer >= interactDelay && interaction.playerRef == 1)
             {
                 var player = other.GetComponent<MovementInput>();
                 player.anim.SetTrigger("Fixing");
@@ -95,7 +95,7 @@ using UnityEngine.UI;
                 interaction.Repair(player);
                 //interactText.text = "";
             }
-            else if (other.tag == "Player2" && Input.GetButtonDown("A2") && timer >= interactDelay)
+            else if (other.tag == "Player2" && Input.GetButtonDown("A2") && timer >= interactDelay && interaction.playerRef == 2)
             {
                 var player = other.GetComponent<MovementInput>();
                 player.anim.SetTrigger("Fixing");

@@ -8,6 +8,7 @@ public class Breakable : MonoBehaviour
     public bool isBroken;
     public string interactionName;
     public int engineID;
+    public int playerRef;
     public GameObject dmgParticle;
 
 
@@ -48,6 +49,8 @@ public class Breakable : MonoBehaviour
         {
             dmgParticle.SetActive(false);
             isBroken = false;
+
+            GetComponent<ObjectBreak>().alreadyBroken = false;
         }
         
     }

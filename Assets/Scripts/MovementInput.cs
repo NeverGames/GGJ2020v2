@@ -6,7 +6,7 @@ using UnityEngine;
 public class MovementInput : MonoBehaviour
 {
 
-
+    public int playerNo;
 
     public float velocity;
     [Space]

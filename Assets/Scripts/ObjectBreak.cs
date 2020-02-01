@@ -17,6 +17,9 @@ public class ObjectBreak : MonoBehaviour
     [SerializeField]
     private Image toolSprite;
 
+    private int selectedObject;
+    public bool alreadyBroken = false;
+
     private void Awake()
     {
         if (objectID == 0)
@@ -29,26 +32,38 @@ public class ObjectBreak : MonoBehaviour
 
     private void Update()
     {
+        if (alreadyBroken)
+            return;
+
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
-            CauseDamage();
+            var tempBreak = GetComponent<Breakable>();
+            CauseDamage(tempBreak.engineID); //checks the engine ID assigned in inspector;
         }
     }
 
-    private void CauseDamage()
+    private void CauseDamage(int engineID)
     {
-            int selectedObject = Random.Range(1, 7);
-            if (selectedObject == objectID)
-            {
-                var tempBreak = GetComponent<Breakable>();
-                tempBreak.Break(true);
-            }
-            else
-            {
-                timer = timeVal;
+        if (engineID == 0)
+        {
+            selectedObject = Random.Range(1, 7); //Rolls between the assigned 1 - 6 if the ID in inspector is 0 or the red engine
+        } else if (engineID == 1)
+        {
+            selectedObject = Random.Range(7, 13); // Rolls between the assigned 7 - 12 if the ID in inspector is 1 or the blue engine
+        }
+        if (selectedObject == objectID)
+        {
+            var tempBreak = GetComponent<Breakable>();
+            tempBreak.Break(true);
+            alreadyBroken = true;
+            timer = timeVal;
+        }
+        else
+        {
+            timer = timeVal;
 
-            }
+        }
        
     }
 
