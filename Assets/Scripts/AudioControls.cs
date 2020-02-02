@@ -11,12 +11,13 @@ public class AudioControls : MonoBehaviour
     private float a_soundsVolume;
 
     [SerializeField]
-    private bool playRandomly = false;
+    private bool playRandomly;
 
     [SerializeField]
     private float playChance;
     [SerializeField]
     private float playTimerReset;
+    [SerializeField]
     private float playAudioTimer = 0.0f;
 
 
@@ -28,6 +29,7 @@ public class AudioControls : MonoBehaviour
     private void Start()
     {
         audio.volume = a_soundsVolume;
+        
     }
 
     private void Update()
@@ -46,14 +48,15 @@ public class AudioControls : MonoBehaviour
         if (playAudioTimer <= 0)
         {
             int rng = Random.Range(0, 10);
+            playAudioTimer = playTimerReset;
 
             if (playChance <= rng)
             {
                 audio.PlayOneShot(audio.clip);
-            } else
-            {
-                playAudioTimer = playTimerReset;
+                Debug.Log("Played");
             }
+
+           
 
         }
     }

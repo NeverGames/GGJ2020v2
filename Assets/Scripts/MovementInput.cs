@@ -20,13 +20,17 @@ public class MovementInput : MonoBehaviour
     public Animator anim;
     public float Speed;
     public float allowPlayerRotation = 0.1f;
-   
+
     public Camera cam;
     public CharacterController controller;
 
     public int toolSelected;
+
+    public AudioClip[] hitSoundEffects;
+    AudioSource audio;
+
     public Transform player;
-  
+
 
     public Transform cameraFixPlayer;
 
@@ -50,11 +54,11 @@ public class MovementInput : MonoBehaviour
     [Range(0, 1f)]
     public float StopAnimTime = 0.15f;
 
-   
+
     private float verticalVel;
     private Vector3 moveVector;
     public bool canMove;
-    
+
     public float gravity = 20f;
 
 
@@ -63,11 +67,11 @@ public class MovementInput : MonoBehaviour
     void Start()
     {
 
-       
+        audio = GetComponent<AudioSource>();
         anim = player.GetComponent<Animator>();
         controller = this.GetComponent<CharacterController>();
 
- 
+
 
     }
 
@@ -81,40 +85,16 @@ public class MovementInput : MonoBehaviour
 
         InputMagnitude();
 
-
-       
-
-
-        //Jump();
-
-
-
-
-
-
-
-
-        //If you don't need the character grounded then get rid of this part.
-        //isGrounded = controller.isGrounded;
-        //if (isGrounded) {
-        //	verticalVel -= 0;
-        //} else {
-        //	verticalVel -= .05f * Time.deltaTime;
-        //}
-        //moveVector = new Vector3 (0, verticalVel, 0);
-        //controller.Move (moveVector);
-
-        //Updater
     }
 
     void PlayerMoveAndRotation()
     {
-        if(gameObject.tag == "Player1")
+        if (gameObject.tag == "Player1")
         {
             InputX = Input.GetAxis("Horizontal");
             InputZ = Input.GetAxis("Vertical");
         }
-        else if(gameObject.tag == "Player2")
+        else if (gameObject.tag == "Player2")
         {
             InputX = Input.GetAxis("Horizontal1");
             InputZ = Input.GetAxis("Vertical1");
@@ -209,6 +189,11 @@ public class MovementInput : MonoBehaviour
             anim.SetFloat("InputMagnitude", Speed, StopAnimTime, Time.deltaTime);
         }
 
+    }
+
+    public void PlaySoundEffect()
+    {
+        audio.PlayOneShot(hitSoundEffects[toolSelected -1]);
     }
 
 

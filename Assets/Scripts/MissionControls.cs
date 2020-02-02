@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MissionControls : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class MissionControls : MonoBehaviour
     bool conditionOneMet = false;
     [SerializeField]
     bool conditionTwoMet = false;
-
+    [SerializeField]
     bool missionStart;
     [SerializeField]
     private bool missionCompleted = false;
@@ -31,6 +32,13 @@ public class MissionControls : MonoBehaviour
     public TMP_Text MissionText;
     public GameObject speakEffect;
 
+    [SerializeField]
+    private Slider missionSlider;
+    [SerializeField]
+    private GameObject missionSliderHolder;
+
+
+
     private void Awake()
     {
         engineControllers = FindObjectsOfType<EngineController>();
@@ -41,16 +49,19 @@ public class MissionControls : MonoBehaviour
         missionTimerCounter = missionBegunTimer;
         speakEffect.SetActive(false);
         MissionText.enabled = false;
+        missionSliderHolder.SetActive(false);
     }
 
     private void Update()
     {
         if (!missionStart)
+        {
             ChanceMissionStart();
-
+            return;
+        }
 
         missionTimerCounter -= Time.deltaTime;
-
+        MissionSliderDisplay();
 
         if (missionTimerCounter <= 0 )
         {
@@ -63,10 +74,7 @@ public class MissionControls : MonoBehaviour
             missionTimerChance = 10.0f;
             missionTimerCounter = missionBegunTimer;
 
-
         }
-
-
         
     }
 
@@ -78,19 +86,19 @@ public class MissionControls : MonoBehaviour
             int rng = Random.Range(0, 10);
             if (rng <= missionChance)
             {
+                missionSliderHolder.SetActive(true);
                 missionStart = true;
                 speakEffect.SetActive(true);
                 var chiefAnim = chief.GetComponent<Animator>();
                 chiefAnim.SetTrigger("IsCommanding");
                 SetEngineRequirements();
                 ComapareMissionRequirements();
+                missionTimerCounter = missionBegunTimer;
                 DisplayMission();
             }
             else
                 missionTimerChance = 10.0f;
-
         }
-
     }
 
     private void SetEngineRequirements ()
@@ -126,8 +134,6 @@ public class MissionControls : MonoBehaviour
 
     private void DisplayMission ()
     {
-       
-
         List<string> stringTypes = new List<string>();
 
         stringTypes.Add("Stop ");
@@ -157,7 +163,12 @@ public class MissionControls : MonoBehaviour
         string display = "Urgent! Red must " + order1 + "Blue must " + order2;
         MissionText.enabled = true;
         MissionText.text = display;
-        Debug.Log(display);
+       
+    }
+
+    private void MissionSliderDisplay ()
+    {
+        missionSlider.value = missionTimerCounter / missionBegunTimer;
     }
 
 
