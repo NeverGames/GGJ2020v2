@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7016379014227200528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7016379014227200530}
+  - component: {fileID: 7016379014227200531}
+  - component: {fileID: 7016379014227200533}
+  m_Layer: 0
+  m_Name: Game Rules
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7016379014227200530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016379014227200528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7016379014227200531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016379014227200528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b2e003d9a08cc4f9ab2a6c5ff52090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipHealth: 50
+  currentScore: 0
+  missionCompletedCount: 0
+  missionTotalCount: 0
+  healthSlider: {fileID: 0}
+  healthDepleteRate: 1
+  g_EndScreen: {fileID: 0}
+  t_Score: {fileID: 0}
+  t_Mission: {fileID: 0}
+  maxTimer: 5
+  maxSeconds: 25
+  t_Timer: {fileID: 0}
+  countDownModifier: 1
+--- !u!114 &7016379014227200533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016379014227200528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdad557f0607df14580d5005373cb0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reqOne: 0
+  reqTwo: 0
+  conditionOneMet: 0
+  conditionTwoMet: 0
+  missionCompleted: 0
+  missionChance: 9
+  engineControllers: []
