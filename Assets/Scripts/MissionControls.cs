@@ -80,6 +80,7 @@ public class MissionControls : MonoBehaviour
             conditionOneMet = false;
             conditionTwoMet = false;
             speachBubble.SetActive(false);
+            missionSliderHolder.SetActive(false);
 
             missionTimerChance = 10.0f;
             missionTimerCounter = missionBegunTimer;
