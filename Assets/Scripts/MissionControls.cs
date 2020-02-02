@@ -39,17 +39,24 @@ public class MissionControls : MonoBehaviour
 
     [SerializeField]
     private GameObject speachBubble;
-    [SerializeField]
-    private Sprite[] missionIcons;
+
+    public Sprite[] missionIcons;
 
     [SerializeField]
     private Image redIcon, blueIcon;
 
+    
+
+    [SerializeField]
+    private AudioClip completedSound, failSound;
+
+    private AudioSource audio;
 
 
     private void Awake()
     {
         engineControllers = FindObjectsOfType<EngineController>();
+        audio = GetComponent<AudioSource>();  
     }
 
     private void Start()
@@ -74,6 +81,12 @@ public class MissionControls : MonoBehaviour
 
         if (missionTimerCounter <= 0  || missionCompleted)
         {
+
+            if (missionCompleted)
+                audio.PlayOneShot(completedSound);
+            else
+                audio.PlayOneShot(failSound);
+
             FindObjectOfType<GameController>().MissionCountUp(missionCompleted);
             missionStart = false;
             missionCompleted = false;
