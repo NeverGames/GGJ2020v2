@@ -18,7 +18,9 @@ public class MissionControls : MonoBehaviour
     private int missionChance;
 
     private float missionTimerChance = 5f;
-    private float missionBegunTimer = 30.0f;
+    private float missionBegunTimer = 15.0f;
+    [SerializeField]
+    private float missionTimerCounter;
 
     [SerializeField]
     EngineController[] engineControllers;
@@ -28,12 +30,21 @@ public class MissionControls : MonoBehaviour
         engineControllers = FindObjectsOfType<EngineController>();
     }
 
+    private void Start()
+    {
+        missionTimerCounter = missionBegunTimer;
+    }
+
     private void Update()
     {
         if (!missionStart)
             ChanceMissionStart();
 
-        if (missionCompleted && missionStart)
+
+        missionTimerCounter -= Time.deltaTime;
+
+
+        if (missionTimerCounter <= 0 )
         {
             FindObjectOfType<GameController>().MissionCountUp(missionCompleted);
             missionStart = false;
@@ -42,6 +53,7 @@ public class MissionControls : MonoBehaviour
             conditionTwoMet = false;
 
             missionTimerChance = 10.0f;
+            missionTimerCounter = missionBegunTimer;
 
 
         }

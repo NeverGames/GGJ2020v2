@@ -63,7 +63,9 @@ public class GameController : MonoBehaviour
 
     void DepleteShipHealth ()
     {
+        shipHealth -= healthDepleteRate * Time.deltaTime;
 
+        healthSlider.value = shipHealth / shipHealthMax;
         if (shipHealth <= 0 )
         {
             gameOver = true;
@@ -73,9 +75,7 @@ public class GameController : MonoBehaviour
             return;
         }
 
-        shipHealth -= healthDepleteRate * Time.deltaTime;
-
-        healthSlider.value = shipHealth / shipHealthMax;
+        
 
     }
 
