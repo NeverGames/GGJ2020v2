@@ -37,6 +37,14 @@ public class MissionControls : MonoBehaviour
     [SerializeField]
     private GameObject missionSliderHolder;
 
+    [SerializeField]
+    private GameObject speachBubble;
+    [SerializeField]
+    private Sprite[] missionIcons;
+
+    [SerializeField]
+    private Image redIcon, blueIcon;
+
 
 
     private void Awake()
@@ -50,6 +58,7 @@ public class MissionControls : MonoBehaviour
         speakEffect.SetActive(false);
         MissionText.enabled = false;
         missionSliderHolder.SetActive(false);
+        speachBubble.SetActive(false);
     }
 
     private void Update()
@@ -70,6 +79,7 @@ public class MissionControls : MonoBehaviour
             missionCompleted = false;
             conditionOneMet = false;
             conditionTwoMet = false;
+            speachBubble.SetActive(false);
 
             missionTimerChance = 10.0f;
             missionTimerCounter = missionBegunTimer;
@@ -134,35 +144,16 @@ public class MissionControls : MonoBehaviour
 
     private void DisplayMission ()
     {
-        List<string> stringTypes = new List<string>();
 
-        stringTypes.Add("Stop ");
-        stringTypes.Add("Slow Down ");
-        stringTypes.Add("Speed up ");
-        stringTypes.Add("Cruise ");
-
-        string order1 = "";
-        string order2 = "";
-
-        for (int i = 0; i < stringTypes.Count; i++)
+        speachBubble.SetActive(true);
+        for (int i = 0; i < missionIcons.Length; i++)
         {
             if (reqOne == i)
-                order1 = stringTypes[i];
+                blueIcon.sprite = missionIcons[i];
 
             if (reqTwo == i)
-                order2 = stringTypes[i];
-
+                redIcon.sprite = missionIcons[i];
         }
-
-        if (conditionOneMet)
-            order1 = stringTypes[stringTypes.Count -1];
-        if (conditionTwoMet)
-            order2 = stringTypes[stringTypes.Count -1];
-
-
-        string display = "Urgent! Red must " + order1 + "Blue must " + order2;
-        MissionText.enabled = true;
-        MissionText.text = display;
        
     }
 
