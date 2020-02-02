@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: 760e5373a5010d64fb369f1e0c28a2d5
+guid: 738fcf6623788bf4ba7a24fcc1351245
 ModelImporter:
   serializedVersion: 26
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -203655887218126122
+    second: mixamo.com
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -30,7 +33,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Pilot Flips Switches
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 301
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -67,15 +99,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 9adebce388f364648970dd0096d7b280
-  - 474e21e6d0739cc469def23c737d2146
-  - 0eb6d76e5d8002a45ade7f7d921045cc
-  - 738fcf6623788bf4ba7a24fcc1351245
-  - 1d71d52a75b920747aa628cefa4b89a4
-  - cd9f85876c83e0c4e8f0fab753da2c1b
-  - fa8a252b1a76b2147badae297ff09229
-  - 78da44eef6aa75b4d92f2bd207ed88aa
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -95,7 +119,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
