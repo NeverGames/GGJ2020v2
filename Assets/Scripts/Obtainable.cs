@@ -24,7 +24,7 @@ public class Obtainable : MonoBehaviour
             playerTool1.SetActive(true);
             
         }
-        else if (player.isHolding && !hasTool)
+        else if (player.isHolding && !hasTool && player.toolSelected == toolID)
         {
             player.isHolding = false;
             player.toolSelected = 0;
@@ -50,7 +50,7 @@ public class Obtainable : MonoBehaviour
             playerTool2.SetActive(true);
 
         }
-        else if (player.isHolding && !hasTool)
+        else if (player.isHolding && !hasTool && player.toolSelected == toolID)
         {
             player.isHolding = false;
             player.toolSelected = 0;
