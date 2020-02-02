@@ -29,7 +29,7 @@ public class MissionControls : MonoBehaviour
 
 
     public GameObject chief;
-    public TMP_Text MissionText;
+    //public TMP_Text MissionText;
     public GameObject speakEffect;
 
     [SerializeField]
@@ -63,7 +63,7 @@ public class MissionControls : MonoBehaviour
     {
         missionTimerCounter = missionBegunTimer;
         speakEffect.SetActive(false);
-        MissionText.enabled = false;
+        //MissionText.enabled = false;
         missionSliderHolder.SetActive(false);
         speachBubble.SetActive(false);
     }
@@ -151,8 +151,8 @@ public class MissionControls : MonoBehaviour
         if (conditionOneMet == true && conditionTwoMet == true)
         {
             missionCompleted = true;
-            MissionText.text = "";
-            MissionText.enabled = false;
+            //MissionText.text = "";
+            //MissionText.enabled = false;
         }
             
 

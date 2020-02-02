@@ -53,6 +53,7 @@ public class GameController : MonoBehaviour
         shipHealth = shipHealthMax;
         timerMinutes = maxTimer;
         timerSeconds = maxSeconds;
+        Time.timeScale = 1;
 
     }
 
@@ -73,8 +74,8 @@ public class GameController : MonoBehaviour
         {
             gameOver = true;
             g_EndScreen.SetActive(true);
-            t_Score.text = "Score: " + currentScore.ToString();
-            t_Mission.text = "Mission Completed: " + missionCompletedCount.ToString() + " / " + missionTotalCount.ToString();
+            t_Score.text = "SUNK YOU LOSE!" ;
+            t_Mission.text = "MISSION COMPLETED: " + missionCompletedCount.ToString() + " : " + missionTotalCount.ToString();
             return;
         }
 
@@ -105,6 +106,12 @@ public class GameController : MonoBehaviour
             t_Timer.text = timerMinutes.ToString("F0") + ":" + seconds;
         else
             t_Timer.text = timerSeconds.ToString("F0") + seconds;
+
+        if (timerSeconds <= 0 && timerMinutes <= 0)
+        {
+            t_Score.text = "YOU WON!";
+            t_Mission.text = "MISSION COMPLETED: " + missionCompletedCount.ToString() + " / " + missionTotalCount.ToString();
+        }
         
 
         
