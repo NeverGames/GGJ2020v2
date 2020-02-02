@@ -91,14 +91,14 @@ public class MissionControls : MonoBehaviour
     public void ComapareMissionRequirements ()
     {
 
-        if (engineControllers[0].currentState == reqOne && !engineControllers[0].isBroken)
+        if (engineControllers[0].currentState == reqOne)
             conditionOneMet = true;
         else if (engineControllers[0].currentState != reqOne)
             conditionOneMet = false;
 
         if (engineControllers[1].currentState == reqTwo)
             conditionTwoMet = true;
-        else if (engineControllers[1].currentState != reqTwo && !engineControllers[1].isBroken)
+        else if (engineControllers[1].currentState != reqTwo)
             conditionTwoMet = false;
 
 

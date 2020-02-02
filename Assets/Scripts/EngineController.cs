@@ -26,6 +26,9 @@ public class EngineController : Breakable
     public override void SpeedControl()
     {
         //base.SpeedControl();
+        if (isBroken)
+            return;
+        
         if (!isFast)
         {
             currentState = 2;
@@ -45,7 +48,8 @@ public class EngineController : Breakable
 
     public override void EnginePower()
     {
-
+        if (isBroken)
+            return;
         //base.EnginePower();
         if (engineOn)
         {
