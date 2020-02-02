@@ -72,13 +72,15 @@ public class MissionControls : MonoBehaviour
         missionTimerCounter -= Time.deltaTime;
         MissionSliderDisplay();
 
-        if (missionTimerCounter <= 0 )
+        if (missionTimerCounter <= 0  || missionCompleted)
         {
             FindObjectOfType<GameController>().MissionCountUp(missionCompleted);
             missionStart = false;
             missionCompleted = false;
+
             conditionOneMet = false;
             conditionTwoMet = false;
+
             speachBubble.SetActive(false);
             missionSliderHolder.SetActive(false);
 
