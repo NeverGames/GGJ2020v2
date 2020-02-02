@@ -40,6 +40,7 @@ public class ToolSelect : MonoBehaviour
             case 3:
                 Debug.Log("The Screw Driver is needed to repair the broken part");
                 toolID = 3;
+                toolImage.sprite = toolSprites[selectID - 1];  
                 //Get broken part ID so you can display which tool is needed over the correct part.
                 break;
         }

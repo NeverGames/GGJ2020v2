@@ -6,6 +6,7 @@ using TMPro;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField]
     private float shipHealthMax = 20;
 
     public float shipHealth;
@@ -63,9 +64,7 @@ public class GameController : MonoBehaviour
 
     void DepleteShipHealth ()
     {
-        shipHealth -= healthDepleteRate * Time.deltaTime;
 
-        healthSlider.value = shipHealth / shipHealthMax;
         if (shipHealth <= 0 )
         {
             gameOver = true;
@@ -75,7 +74,9 @@ public class GameController : MonoBehaviour
             return;
         }
 
-        
+        shipHealth -= healthDepleteRate * Time.deltaTime;
+
+        healthSlider.value = shipHealth / shipHealthMax;
 
     }
 
@@ -107,12 +108,12 @@ public class GameController : MonoBehaviour
 
     public void MissionCountUp (bool success)
     {
-        float shipRestore = 5f;
+        float shipRestore = 0.5f;
 
         if (success)
         {
             missionCompletedCount++;
-            shipHealth += shipRestore * shipHealth;
+            shipHealth += shipRestore * shipHealth/100;
             shipHealth = Mathf.Min(shipHealth, shipHealthMax);
         }
         else
