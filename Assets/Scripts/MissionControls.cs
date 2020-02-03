@@ -20,7 +20,7 @@ public class MissionControls : MonoBehaviour
     private int missionChance;
 
     private float missionTimerChance = 5f;
-    private float missionBegunTimer = 15.0f;
+    private float missionBegunTimer = 30.0f;
     [SerializeField]
     private float missionTimerCounter;
 
