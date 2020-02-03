@@ -7,11 +7,11 @@ public class Breakable : MonoBehaviour
 
     public bool isBroken;
     public string interactionName;
-    public int engineID;
+    
     public int playerRef;
     public GameObject dmgParticle;
 
-
+    public EngineController engine;
 
     private void Start()
     {
@@ -38,6 +38,7 @@ public class Breakable : MonoBehaviour
             dmgParticle.SetActive(true);
             var triggerObject = GetComponent<Trigger>();
             triggerObject.enabled = true;
+            engine.engineBroken = true;
         }
     }
 
@@ -49,19 +50,13 @@ public class Breakable : MonoBehaviour
         {
             dmgParticle.SetActive(false);
             isBroken = false;
+            engine.engineBroken = false;
 
             GetComponent<ObjectBreak>().alreadyBroken = false;
         }
         
     }
 
-    public virtual void SpeedControl()
-    {
-
-    }
-    public virtual void EnginePower() 
-        {
-
-        } 
+    
 
 }

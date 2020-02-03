@@ -49,7 +49,6 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
         shipHealth = shipHealthMax;
         timerMinutes = maxTimer;
         timerSeconds = maxSeconds;
@@ -61,6 +60,7 @@ public class GameController : MonoBehaviour
     {
         if (gameOver)
             Time.timeScale = 0;
+        
 
         DepleteShipHealth();
         CountDownTimer();

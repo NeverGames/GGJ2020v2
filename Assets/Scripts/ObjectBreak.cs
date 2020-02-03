@@ -39,7 +39,7 @@ public class ObjectBreak : MonoBehaviour
         if(timer <= 0)
         {
             var tempBreak = GetComponent<Breakable>();
-            CauseDamage(tempBreak.engineID); //checks the engine ID assigned in inspector;
+            CauseDamage(tempBreak.engine.engineID); //checks the engine ID assigned in inspector;
         }
     }
 

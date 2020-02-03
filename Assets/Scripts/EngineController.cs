@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class EngineController : Breakable
+public class EngineController : MonoBehaviour
 {
-
-    bool engineOn = false;
+    public int engineID;
+    bool engineOn = true;
     bool isFast = false;
 
     public int currentState = 1;
@@ -17,6 +17,9 @@ public class EngineController : Breakable
     [SerializeField]
     private Image currentModeImage;
 
+    
+
+    public bool engineBroken;
 
     private void Awake()
     {
@@ -25,10 +28,10 @@ public class EngineController : Breakable
     }
 
 
-    public override void SpeedControl()
+    public void SpeedControl()
     {
         //base.SpeedControl();
-        if (isBroken)
+        if (engineBroken)
             return;
         
         if (!isFast)
@@ -50,9 +53,9 @@ public class EngineController : Breakable
 
     }
 
-    public override void EnginePower()
+    public void EnginePower()
     {
-        if (isBroken)
+        if (engineBroken)
             return;
         //base.EnginePower();
         if (engineOn)
@@ -70,7 +73,7 @@ public class EngineController : Breakable
             engineAnim.SetBool("PowerDown", false);
             engineOn = true;
             currentModeImage.sprite = missionControls.missionIcons[currentState];
-            currentState = 0;
+            
 
         }
         missionControls.ComapareMissionRequirements();
