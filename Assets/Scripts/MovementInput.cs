@@ -61,7 +61,8 @@ public class MovementInput : MonoBehaviour
 
     public float gravity = 20f;
 
-
+    [SerializeField]
+    private Transform emergencySpawn;
 
 
     void Start()
@@ -78,6 +79,8 @@ public class MovementInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+            transform.position = emergencySpawn.position;
 
         if (!canMove)
             return;

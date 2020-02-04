@@ -62,7 +62,7 @@ public class MissionControls : MonoBehaviour
     private void Start()
     {
         missionTimerCounter = missionBegunTimer;
-        speakEffect.SetActive(false);
+        //speakEffect.SetActive(false);
         //MissionText.enabled = false;
         missionSliderHolder.SetActive(false);
         speachBubble.SetActive(false);
@@ -114,7 +114,7 @@ public class MissionControls : MonoBehaviour
             {
                 missionSliderHolder.SetActive(true);
                 missionStart = true;
-                speakEffect.SetActive(true);
+                //speakEffect.SetActive(true);
                 var chiefAnim = chief.GetComponent<Animator>();
                 chiefAnim.SetTrigger("IsCommanding");
                 SetEngineRequirements();
