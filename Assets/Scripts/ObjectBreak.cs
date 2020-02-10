@@ -28,6 +28,8 @@ public class ObjectBreak : MonoBehaviour
             timer = timeVal;
         }
 
+        
+
     }
 
     private void Update()
@@ -35,12 +37,22 @@ public class ObjectBreak : MonoBehaviour
         if (alreadyBroken)
             return;
 
-        timer -= Time.deltaTime;
-        if(timer <= 0)
-        {
-            var tempBreak = GetComponent<Breakable>();
-            CauseDamage(tempBreak.engine.engineID); //checks the engine ID assigned in inspector;
-        }
+        //timer -= Time.deltaTime;
+        //if(timer <= 0)
+        //{
+        //    var tempBreak = GetComponent<Breakable>();
+        //    CauseDamage(tempBreak.engine.engineID); //checks the engine ID assigned in inspector;
+        //}
+    }
+
+
+    public void BreakPart ()
+    {
+        // Break values.
+        var tempBreak = GetComponent<Breakable>();
+        tempBreak.Break(true);
+        alreadyBroken = true;
+
     }
 
     private void CauseDamage(int engineID)

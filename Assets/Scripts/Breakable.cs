@@ -19,7 +19,9 @@ public class Breakable : MonoBehaviour
         {
             dmgParticle.SetActive(false);
         }
-        
+
+        if(GetComponent<ObjectBreak>() != null)
+            engine.objectBreaks.Add(GetComponent<ObjectBreak>());
     }
     public virtual void InteractWith()
     {

@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
 
     public float countDownModifier = 1.0f;
 
-    
+    public GameController[] gameControllers;
 
     
 
@@ -53,6 +53,8 @@ public class GameController : MonoBehaviour
         timerMinutes = maxTimer;
         timerSeconds = maxSeconds;
         Time.timeScale = 1;
+
+        gameControllers = FindObjectsOfType<GameController>();
 
     }
 

@@ -18,16 +18,36 @@ public class EngineController : MonoBehaviour
     [SerializeField]
     private Image currentModeImage;
 
-    
+    public List<ObjectBreak> objectBreaks;
 
     public bool engineBroken;
+
+    private float brakeChanceMuiltiplier = 1.0f;
+
+    private float rngTimer;
 
     private void Awake()
     {
         missionControls = FindObjectOfType<MissionControls>();
         currentState = 1;
+
+        rngTimer = Random.Range(10, 15);
     }
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+            CauseDamage();
+        rngTimer -= Time.deltaTime;
+
+        if (rngTimer <= 0)
+        {
+            CauseDamage();
+            rngTimer = Random.Range(10, 15);
+        }
+
+    }
 
     public void SpeedControl()
     {
@@ -50,7 +70,7 @@ public class EngineController : MonoBehaviour
             currentModeImage.sprite = missionControls.missionIcons[1];
         }
 
-        missionControls.ComapareMissionRequirements();
+        missionControls.CompareMissionRequirements();
 
     }
 
@@ -80,10 +100,69 @@ public class EngineController : MonoBehaviour
             
 
         }
-        missionControls.ComapareMissionRequirements();
+        missionControls.CompareMissionRequirements();
 
     }
 
+    private void CauseDamage()
+    {
+        // Chance of breaking.
+        int rng = Random.Range(0, 100);
+
+        brakeChanceMuiltiplier = 0;
+        for (int i = 0; i < objectBreaks.Count; i++)
+        {
+            if (objectBreaks[i].alreadyBroken == false)
+                brakeChanceMuiltiplier += 0.166f;
+        }
+
+        // Debug.Log("brakemuiltplier: " + brakeChanceMuiltiplier);
+        int chance = Mathf.CeilToInt (100 * brakeChanceMuiltiplier);
+        //SDebug.Log("Chance: " + chance + " rng: " + rng);
+        if (rng < chance)
+        {
+            int o = ObjectBreakNumber();
+            if(o != -1)
+                objectBreaks[ObjectBreakNumber()].BreakPart();
+            
+            //Debug.Log("Broke");
+            
+
+        }
+        
+
+
+
+    }
+
+    private int ObjectBreakNumber ()
+    {
+        int failcheck = 0;
+        while (true)
+        {
+            int obj = Random.Range(0, objectBreaks.Count);
+
+            if (objectBreaks[obj].alreadyBroken == false)
+                return obj;
+
+            failcheck++;
+
+            if (failcheck > 10)
+            {
+                Debug.Log("forced to check");
+                for (int i = 0; i < objectBreaks.Count; i++)
+                {
+                    if (objectBreaks[i].alreadyBroken == false)
+                        return i;
+                }
+                
+                return -1;
+            }
+
+        }
+
+        
+    }
 
 
 }

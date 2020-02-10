@@ -75,7 +75,7 @@ public class MissionControls : MonoBehaviour
             ChanceMissionStart();
             return;
         }
-        ComapareMissionRequirements();
+        CompareMissionRequirements();
         missionTimerCounter -= Time.deltaTime;
         MissionSliderDisplay();
 
@@ -115,12 +115,12 @@ public class MissionControls : MonoBehaviour
             if (rng <= missionChance)
             {
                 missionSliderHolder.SetActive(true);
-                missionStart = true;
+                
                 //speakEffect.SetActive(true);
                 var chiefAnim = chief.GetComponent<Animator>();
                 chiefAnim.SetTrigger("IsCommanding");
                 SetEngineRequirements();
-                ComapareMissionRequirements();
+                CompareMissionRequirements();
                 missionTimerCounter = missionBegunTimer;
                 DisplayMission();
             }
@@ -134,9 +134,19 @@ public class MissionControls : MonoBehaviour
         reqOne = Random.Range(0, 3);
         reqTwo = Random.Range(0, 3);
 
+        CompareMissionRequirements();
+        if (missionCompleted == true)
+        {
+            missionCompleted = false;
+            missionStart = false;
+            SetEngineRequirements();
+        }
+        else
+            missionStart = true;
+
     }
 
-    public void ComapareMissionRequirements ()
+    public void CompareMissionRequirements ()
     {
 
         if (engineControllers[0].currentState == reqOne)
