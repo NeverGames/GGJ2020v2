@@ -75,12 +75,14 @@ public class MissionControls : MonoBehaviour
             ChanceMissionStart();
             return;
         }
-
+        ComapareMissionRequirements();
         missionTimerCounter -= Time.deltaTime;
         MissionSliderDisplay();
 
         if (missionTimerCounter <= 0  || missionCompleted)
         {
+            
+            
 
             if (missionCompleted)
                 audio.PlayOneShot(completedSound);

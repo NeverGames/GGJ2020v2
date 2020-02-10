@@ -9,7 +9,8 @@ public class EngineController : MonoBehaviour
     bool isFast = false;
 
     public int currentState = 1;
-    
+    private int lastState;
+
     public Animator engineAnim;
 
     private MissionControls missionControls;
@@ -64,6 +65,8 @@ public class EngineController : MonoBehaviour
             engineAnim.SetBool("PowerDown",true);
             engineOn = false;
             currentModeImage.sprite = missionControls.missionIcons[0];
+            lastState = currentState;
+            currentState = 0;
 
         }
         else if (!engineOn)
@@ -72,7 +75,8 @@ public class EngineController : MonoBehaviour
             
             engineAnim.SetBool("PowerDown", false);
             engineOn = true;
-            currentModeImage.sprite = missionControls.missionIcons[currentState];
+            currentModeImage.sprite = missionControls.missionIcons[lastState];
+            currentState = lastState;
             
 
         }
