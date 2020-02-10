@@ -14,6 +14,7 @@ public class EngineController : MonoBehaviour
     public Animator engineAnim;
 
     private MissionControls missionControls;
+    private GameController gameController;
 
     [SerializeField]
     private Image currentModeImage;
@@ -29,6 +30,7 @@ public class EngineController : MonoBehaviour
     private void Awake()
     {
         missionControls = FindObjectOfType<MissionControls>();
+        gameController = FindObjectOfType<GameController>();
         currentState = 1;
 
         rngTimer = Random.Range(10, 15);
@@ -39,6 +41,7 @@ public class EngineController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
             CauseDamage();
+
         rngTimer -= Time.deltaTime;
 
         if (rngTimer <= 0)
@@ -46,7 +49,7 @@ public class EngineController : MonoBehaviour
             CauseDamage();
             rngTimer = Random.Range(10, 15);
         }
-
+        SpeedDistanceToIsland();
     }
 
     public void SpeedControl()
@@ -61,6 +64,7 @@ public class EngineController : MonoBehaviour
             engineAnim.SetBool("IsFast", true);
             isFast = true;
             currentModeImage.sprite = missionControls.missionIcons[2];
+            
         }
         else if (isFast)
         {
@@ -113,7 +117,7 @@ public class EngineController : MonoBehaviour
         for (int i = 0; i < objectBreaks.Count; i++)
         {
             if (objectBreaks[i].alreadyBroken == false)
-                brakeChanceMuiltiplier += 0.166f;
+                brakeChanceMuiltiplier += 0.1f;
         }
 
         // Debug.Log("brakemuiltplier: " + brakeChanceMuiltiplier);
@@ -125,14 +129,7 @@ public class EngineController : MonoBehaviour
             if(o != -1)
                 objectBreaks[ObjectBreakNumber()].BreakPart();
             
-            //Debug.Log("Broke");
-            
-
         }
-        
-
-
-
     }
 
     private int ObjectBreakNumber ()
@@ -155,14 +152,25 @@ public class EngineController : MonoBehaviour
                     if (objectBreaks[i].alreadyBroken == false)
                         return i;
                 }
-                
                 return -1;
             }
-
         }
-
-        
     }
 
+    private void SpeedDistanceToIsland ()
+    {
+        if (currentState == 0)
+        {
+            // no movement
+        }
+        else if(currentState == 1)
+        {
+            gameController.TravelReduce(0.5f);
+        }
+        else if (currentState == 2)
+        {
+            gameController.TravelReduce(1.0f);
+        }
+    }
 
 }

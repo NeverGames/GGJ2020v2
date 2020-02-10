@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     [Range(1, 5)]
-    private float healthDepleteRate;
+    private float healthDepleteRate = 0.4f;
 
     private bool gameOver;
     [SerializeField]
@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
 
     public GameController[] gameControllers;
 
-    
+    private float distancedToIsland = 200f;
 
 
     private void Awake()
@@ -60,12 +60,12 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (gameOver)
-            Time.timeScale = 0;
+        //if (gameOver)
+        //    Time.timeScale = 0;
         
 
         DepleteShipHealth();
-        CountDownTimer();
+        //CountDownTimer();
     }
 
 
@@ -121,12 +121,12 @@ public class GameController : MonoBehaviour
 
     public void MissionCountUp (bool success)
     {
-        float shipRestore = 0.5f;
+        float shipRestore = 0.25f;
 
         if (success)
         {
             missionCompletedCount++;
-            shipHealth += shipRestore * shipHealth/100;
+            shipHealth += shipRestore * shipHealthMax;
             shipHealth = Mathf.Min(shipHealth, shipHealthMax);
         }
         else
@@ -135,5 +135,21 @@ public class GameController : MonoBehaviour
         missionTotalCount++;
 
     }
+
+    public void TravelReduce(float speed)
+    {
+        if(distancedToIsland > 0)
+            distancedToIsland -= speed * Time.deltaTime;
+        t_Timer.text = distancedToIsland.ToString("f2");
+
+        if (distancedToIsland <= 0)
+        {
+            g_EndScreen.SetActive(true);
+        }
+
+
+    }
+
+
 
 }
