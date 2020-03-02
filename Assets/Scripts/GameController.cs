@@ -26,7 +26,9 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private GameObject g_EndScreen;
     [SerializeField]
-    private TMP_Text t_Score, t_Mission;
+    private TMP_Text t_Score, t_Mission, t_Title;
+
+    private int score;
 
 
     [SerializeField]
@@ -44,7 +46,19 @@ public class GameController : MonoBehaviour
 
     public GameController[] gameControllers;
 
-    private float distancedToIsland = 200f;
+    private float distancedToIsland = 250f;
+    public float engineOneSpeed, engineTwoSpeed;
+    public float speed;
+
+    [SerializeField]
+    private GameObject islandObj;
+    [SerializeField]
+    private GameObject ship;
+
+    [SerializeField]
+    private Canvas pauseCanvas;
+    [SerializeField]
+    Button pauseButton;
 
 
     private void Awake()
@@ -55,17 +69,25 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
 
         gameControllers = FindObjectsOfType<GameController>();
+        islandObj = GameObject.FindWithTag("Island");
+        ship = GameObject.FindWithTag("Ship");
 
+    }
+    private void Start()
+    {
+        float dis = Vector3.Distance(islandObj.transform.position, ship.transform.position);
+        dis += distancedToIsland;
+        islandObj.transform.position = new Vector3(islandObj.transform.position.x, islandObj.transform.position.y, -distancedToIsland - 2500);
     }
 
     private void Update()
     {
         //if (gameOver)
         //    Time.timeScale = 0;
-        
+        TravelReduce();
 
         DepleteShipHealth();
-        //CountDownTimer();
+        
     }
 
 
@@ -111,7 +133,7 @@ public class GameController : MonoBehaviour
 
         if (timerSeconds <= 0 && timerMinutes <= 0)
         {
-            t_Score.text = "YOU WON!";
+            t_Score.text = "YOU MADE IT!";
             t_Mission.text = "MISSION COMPLETED: " + missionCompletedCount.ToString() + " / " + missionTotalCount.ToString();
         }
         
@@ -125,6 +147,7 @@ public class GameController : MonoBehaviour
 
         if (success)
         {
+            AddToScore(500);
             missionCompletedCount++;
             shipHealth += shipRestore * shipHealthMax;
             shipHealth = Mathf.Min(shipHealth, shipHealthMax);
@@ -136,19 +159,57 @@ public class GameController : MonoBehaviour
 
     }
 
-    public void TravelReduce(float speed)
+    public void TravelReduce()
     {
-        if(distancedToIsland > 0)
-            distancedToIsland -= speed * Time.deltaTime;
-        t_Timer.text = distancedToIsland.ToString("f2");
-
-        if (distancedToIsland <= 0)
+        if (distancedToIsland > 0)
         {
+            speed = engineOneSpeed + engineTwoSpeed;
+            distancedToIsland -= speed * Time.deltaTime;
+            islandObj.transform.position = Vector3.MoveTowards(islandObj.transform.position, ship.transform.position, Time.deltaTime);
+
+        }
+        t_Timer.text = distancedToIsland.ToString("f2");
+        
+
+        if (distancedToIsland <= 0 && g_EndScreen.activeSelf == false)
+        {
+            Time.timeScale = 0;
+            AddToScore(2000);
+            AddToScore(Mathf.CeilToInt(shipHealth));
+            t_Score.text = "TOTAL SCORE: " + score.ToString();
+            t_Title.text = "YOU MADE IT!";
+            t_Mission.text = "MISSION COMPLETED: " + missionCompletedCount.ToString() + " OF " + missionTotalCount.ToString();
             g_EndScreen.SetActive(true);
         }
 
 
     }
+
+    public void AddToScore (int add)
+    {
+        score += add;
+    }
+
+    public void PauseGame()
+    {
+        if (gameOver)
+            return;
+     
+        
+        if (Time.timeScale == 1) // Pause game
+        {
+            pauseCanvas.enabled = true;
+            
+            Time.timeScale = 0;
+        }
+        else // Resume game
+        {
+            pauseCanvas.enabled = false;
+            Time.timeScale = 1;
+        }
+    }
+
+
 
 
 

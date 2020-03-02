@@ -39,8 +39,8 @@ public class EngineController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-            CauseDamage();
+        //if (Input.GetKeyDown(KeyCode.G))
+        //    CauseDamage();
 
         rngTimer -= Time.deltaTime;
 
@@ -165,11 +165,17 @@ public class EngineController : MonoBehaviour
         }
         else if(currentState == 1)
         {
-            gameController.TravelReduce(0.5f);
+            if (engineID == 0)
+                gameController.engineOneSpeed = 0.75f;
+            else if (engineID == 1)
+                gameController.engineOneSpeed = 0.75f;
         }
         else if (currentState == 2)
         {
-            gameController.TravelReduce(1.0f);
+            if (engineID == 0) 
+                gameController.engineOneSpeed = 1.5f;
+            else if (engineID == 1)
+                gameController.engineOneSpeed = 1.5f;
         }
     }
 

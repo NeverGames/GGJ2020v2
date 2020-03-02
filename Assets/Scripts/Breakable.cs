@@ -53,6 +53,7 @@ public class Breakable : MonoBehaviour
             dmgParticle.SetActive(false);
             isBroken = false;
             engine.engineBroken = false;
+            FindObjectOfType<GameController>().AddToScore(100);
 
             GetComponent<ObjectBreak>().alreadyBroken = false;
         }

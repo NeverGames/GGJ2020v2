@@ -79,9 +79,11 @@ public class MovementInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            transform.position = emergencySpawn.position;
-
+        if (Input.GetButtonDown("Pause" + playerNo))
+        {
+            FindObjectOfType<GameController>().PauseGame();
+            Debug.Log("Pressed");
+        }
         if (!canMove)
             return;
 
@@ -198,6 +200,9 @@ public class MovementInput : MonoBehaviour
     {
         audio.PlayOneShot(hitSoundEffects[toolSelected -1]);
     }
+
+    
+    
 
 
 }
